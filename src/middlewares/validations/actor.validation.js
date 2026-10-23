@@ -1,3 +1,7 @@
+import { body } from "express-validator";
+import { validator } from "../validator.middleware.js";
+
+
 export const createActorValidation = [
    body("name")
     .trim()

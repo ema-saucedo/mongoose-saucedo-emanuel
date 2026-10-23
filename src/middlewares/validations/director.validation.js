@@ -1,5 +1,5 @@
 import { body } from "express-validator";
-import { validator } from "../validator.middleware";
+import { validator } from "../validator.middleware.js";
 
 export const createDirectorValidation = [
   body("name")
@@ -19,7 +19,7 @@ export const createDirectorValidation = [
     .isEmail()
     .withMessage("Debe ser un email válido"),
 
-  body("contac.phone")
+  body("contact.phone")
     .optional({ values: "falsy" }) // con el falsy hacemos que si viene vacío solo lo va a ignorar y se saltea todas las validaciones del campo
     .trim(),
 

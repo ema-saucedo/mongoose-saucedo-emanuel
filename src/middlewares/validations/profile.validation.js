@@ -1,4 +1,7 @@
 import { body } from "express-validator";
+import { validator } from "../validator.middleware.js";
+import DirectorModel from "../../models/director.model.js";
+import ProfileModel from "../../models/profile.model.js";
 
 export const createProfileValidation = [
     body("director")
@@ -6,7 +9,7 @@ export const createProfileValidation = [
     .withMessage("El ID del director no es válido")
     .custom(async (directorId) => {
         //con esto buscamos si el director existe
-        const director = await DirectorModel.finOne({_id:directorId, isActive:true});
+        const director = await DirectorModel.findOne({_id:directorId, isActive:true});
         
         if(!director) {
             throw new Error("El director no existe o está inactivo");
@@ -27,14 +30,14 @@ export const createProfileValidation = [
     .notEmpty()
     .withMessage("La biografía es obligatoria"),
 
-    body("yearsOfExprecience")
-    .isIn({ min: 0 })//esto dice que tiene que ser un número mayor o igual a 0
+    body("yearsOfExperience")
+    .isInt({ min: 0 })//esto dice que tiene que ser un número mayor o igual a 0
     .withMessage("Los años de experiencia deben ser un número positivo"),
 
     body("awards")
     .optional({ values: "falsy" })
     .isArray() //esto dice que awards tiene que ser un array
-    .withMessage("Los premios deben ser una lista").
+    .withMessage("Los premios deben ser una lista"),
 
     validator,
 ];
