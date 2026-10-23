@@ -1,7 +1,7 @@
 import { body } from "express-validator";
 import { validator } from "../validator.middleware.js";
-import DirectorModel from "../../models/director.model.js";
-import ProfileModel from "../../models/profile.model.js";
+import { DirectorModel } from "../../models/director.model.js";
+import { ProfileModel } from "../../models/profile.model.js";
 
 export const createProfileValidation = [
     body("director")

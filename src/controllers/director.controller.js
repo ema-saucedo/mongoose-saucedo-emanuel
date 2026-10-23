@@ -1,8 +1,8 @@
 import { matchedData } from "express-validator";
 
-import { DirectorModel } from "../models/director.model";
-import { ProfileModel } from "../models/profile.model";
-import { MovieModel } from "../models/movie.model";
+import { DirectorModel } from "../models/director.model.js";
+import { ProfileModel } from "../models/profile.model.js";
+import { MovieModel } from "../models/movie.model.js";
 
 //Crear director "POST"
 export const createDirector = async (req, res) => {
